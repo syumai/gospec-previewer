@@ -51,7 +51,7 @@ const renderContent = (content) => {
   return `<!doctype html>
 <html>
   <head>
-    <title>Go Spec Viewer</title>
+    <title>Go Spec Previewer</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:600|Roboto:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Product+Sans&text=Supported%20by%20Google&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="https://golang.org/lib/godoc/style.css">
