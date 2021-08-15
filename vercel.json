@@ -1,3 +1,3 @@
 {
-  "rewrites": [{ "source": "/spec/refs/:ref*", "destination": "/api/spec?ref=:ref*" }]
+  "rewrites": [{ "source": "/refs/:ref*", "destination": "/api/refs?ref=:ref*" }]
 }
