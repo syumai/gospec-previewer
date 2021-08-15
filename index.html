@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Go Language Specification Previewer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Go Language Specification Previewer</h1>
+      <form action="" method="get" id="refForm">
+        <div class="field">
+          <label class="label" for="ref">Git ref of spec</label>
+          <div class="control">
+            <input class="input" type="text" name="ref" id="ref" placeholder="e.g.) master, dev.typeparams ..." required>
+          </div>
+          <div class="control">
+            <button class="button is-primary">Preview</button>
+          </div>
+        </div>
+        <div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <script>
+    const refForm = document.getElementById("refForm");
+    refForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const ref = e.target.ref.value;
+      window.location.href = `/spec/refs/${ref}`;
+    })
+  </script>
+</body>
+
+</html>

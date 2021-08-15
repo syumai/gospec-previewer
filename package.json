@@ -1,0 +1,20 @@
+{
+  "name": "gospec-previewer",
+  "version": "0.1.0",
+  "description": "previewer application of Go Language Specification",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syumai/gospec-previewer.git"
+  },
+  "author": "syumai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/syumai/gospec-previewer/issues"
+  },
+  "homepage": "https://github.com/syumai/gospec-previewer#readme",
+  "private": true,
+  "devDependencies": {
+    "vercel": "^23.1.2"
+  }
+}
