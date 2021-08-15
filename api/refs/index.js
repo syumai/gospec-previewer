@@ -86,6 +86,6 @@ module.exports = async (req, res) => {
     query: { ref },
   } = req;
   const content = await fetchContent(ref);
-  res.setHeader("Cache-Control", "s-maxage=3600");
+  res.setHeader("Cache-Control", "max-age=0, s-maxage=86400");
   res.send(renderContent(content));
 };
