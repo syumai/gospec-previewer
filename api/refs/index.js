@@ -51,7 +51,10 @@ const renderContent = (content) => {
   return `<!doctype html>
 <html>
   <head>
-    <title>Go Spec Previewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#00ADD8">
+    <title>${contentDesc.Subtitle} - Go Language Specification Previewer</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:600|Roboto:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Product+Sans&text=Supported%20by%20Google&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="https://golang.org/lib/godoc/style.css">
