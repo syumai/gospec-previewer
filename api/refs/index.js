@@ -70,6 +70,9 @@ const renderContent = (content) => {
   <div id="nav"></div>
 ${content}
   </main>
+  <div style="margin-bottom: 24px">
+    <a href="https://golang.org/doc/copyright">Copyright</a>
+  </div>
   <script src="/src/toc.js"></script>
   </body>
 </html>`;
