@@ -1,33 +1,26 @@
-//@ts-check
-
-const https = require("https");
+import https from "https";
+import type http from "http";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const refRegExp = /^[a-zA-Z0-9/.\-_]+$/;
 
 /**
  * validateRef checks format of ref.
- *
- * @param {string} ref
- * @returns boolean
  */
-const validateRef = (ref) => {
+const validateRef = (ref: string): boolean => {
   return refRegExp.test(ref);
 };
 
 /**
  * loadContent loads Go Spec HTML content and return it as plain HTML.
- *
- * @param {string} ref
- * @returns {Promise<string>}
  */
-const fetchContent = async (ref) => {
+const fetchContent = async (ref: string): Promise<string> => {
   if (!validateRef(ref)) {
     throw new Error(`invalid ref format: ${ref}`);
   }
   const url = `https://go.googlesource.com/go/+/${ref}/doc/go_spec.html?format=TEXT`;
   const req = https.get(url);
-  /** @type {import("http").IncomingMessage} */
-  const res = await new Promise((resolve, reject) => {
+  const res = await new Promise<http.IncomingMessage>((resolve, reject) => {
     req.on("response", (res) => resolve(res));
     req.on("error", (err) => reject(err));
   });
@@ -42,12 +35,16 @@ const fetchContent = async (ref) => {
 
 /**
  * renderContent renders content as full HTML.
- *
- * @param {string} content
- * @returns string
  */
-const renderContent = (content) => {
-  const contentDesc = JSON.parse(content.match(/<!--([^>]*)-->/)[1]);
+const renderContent = (content: string): string => {
+  const matchedContent = content.match(/<!--([^>]*)-->/);
+  if (!matchedContent) {
+    throw new Error("description JSON must be exist");
+  }
+  if (matchedContent.length < 2 || !matchedContent[1]) {
+    throw new Error("description JSON didn't matched to the pattern");
+  }
+  const contentDesc = JSON.parse(matchedContent[1]);
   return `<!doctype html>
 <html>
   <head>
@@ -61,17 +58,18 @@ const renderContent = (content) => {
   </head>
   <body>
   <main id="page" class="Site-content wide">
-<div class="container">
-  <h1>
-    ${contentDesc.Title}
-    <span class="text-muted"></span>
-  </h1>
-  <h2>
-    ${contentDesc.Subtitle}
-    <span class="text-muted"></span>
-  </h2>
-  <div id="nav"></div>
-${content}
+    <div class="container">
+      <h1>
+        ${contentDesc.Title}
+        <span class="text-muted"></span>
+      </h1>
+      <h2>
+        ${contentDesc.Subtitle}
+        <span class="text-muted"></span>
+      </h2>
+      <div id="nav"></div>
+      ${content}
+    </div>
   </main>
   <div style="margin-bottom: 24px">
     <a href="https://golang.org/doc/copyright">Copyright</a>
@@ -81,11 +79,18 @@ ${content}
 </html>`;
 };
 
-module.exports = async (req, res) => {
+export default async (
+  req: VercelRequest,
+  res: VercelResponse
+): Promise<void> => {
   const {
     query: { ref },
   } = req;
-  const content = await fetchContent(ref);
+  const refStr = Array.isArray(ref) ? ref[0] : ref;
+  if (!refStr) {
+    throw new Error("ref must be given");
+  }
+  const content = await fetchContent(refStr);
   res.setHeader("Cache-Control", "max-age=0, s-maxage=86400");
   res.send(renderContent(content));
 };

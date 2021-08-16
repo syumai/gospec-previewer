@@ -9,7 +9,8 @@ https://gospec-previewer.vercel.app
 ## Development
 
 ```
-npx vercel dev
+make dev    # run vercel dev server
+make deploy # manually run deploy (push to main branch also runs deploy)
 ```
 
 ## License

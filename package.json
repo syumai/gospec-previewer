@@ -15,6 +15,7 @@
   "homepage": "https://github.com/syumai/gospec-previewer#readme",
   "private": true,
   "devDependencies": {
+    "@vercel/node": "^1.12.1",
     "vercel": "^23.1.2"
   }
 }
