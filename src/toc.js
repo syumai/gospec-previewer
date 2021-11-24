@@ -3,7 +3,7 @@
 
 function generateTableOfContents() {
   // get table of contents
-  const container = document.querySelector(".container");
+  const container = document.querySelector(".Doc.Article");
   const headers = Array.from(container.querySelectorAll("h2, h3")).filter(
     (node) => node.id !== ""
   );

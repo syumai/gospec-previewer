@@ -54,22 +54,42 @@ const renderContent = (content: string): string => {
     <title>${contentDesc.Subtitle} - Go Language Specification Previewer</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:600|Roboto:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Product+Sans&text=Supported%20by%20Google&display=swap" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="https://golang.org/lib/godoc/style.css">
+    <link type="text/css" rel="stylesheet" href="https://go.dev/css/styles.css">
+    <style type="text/css">
+      .Site-header {
+        background: #485fc7;
+        position: initial;
+      }
+      .SiteContent--default {
+        margin-top: 0;
+      }
+    </style>
   </head>
-  <body>
-  <main id="page" class="Site-content wide">
-    <div class="container">
+  <body class="Site">
+    <header class="Site-header js-siteHeader">
+    <div class="Header Header--dark">
+      <nav class="Header-nav">
+        <ul class="Header-menu">
+          <li class="Header-menuItem ">
+            <a href="/">Go Language Specification Previewer (unofficial)</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="page" class="SiteContent SiteContent--default">
+    <article class="Doc Article">
       <h1>
         ${contentDesc.Title}
         <span class="text-muted"></span>
       </h1>
-      <h2>
+      <h2 class="subtitle">
         ${contentDesc.Subtitle}
         <span class="text-muted"></span>
       </h2>
-      <div id="nav"></div>
+      <div id="nav" class="TOC"></div>
       ${content}
-    </div>
+    </article>
   </main>
   <div style="margin-bottom: 24px">
     <a href="https://golang.org/doc/copyright">Copyright</a>
