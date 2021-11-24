@@ -56,6 +56,11 @@ const renderContent = (content: string): string => {
     <link href="https://fonts.googleapis.com/css?family=Product+Sans&text=Supported%20by%20Google&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="https://go.dev/css/styles.css">
     <style type="text/css">
+      @media only screen and (max-width: 57.7rem) {
+        .Site-header {
+          display: none;
+        }
+      }
       .Site-header {
         background: #485fc7;
         position: initial;
